@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/data', async (req, res) => {
     try{
         let data = await readData();
-        const { sortBy , filterBy , filterValue } = req.body;
+        const { sortBy , sortOrder , filterBy , filterValue } = req.body;
 
         if(filterBy && filterValue)
         {
@@ -25,8 +25,16 @@ router.get('/data', async (req, res) => {
                     {
                         return a.name.localeCompare(b.name);
                     }
+                else if (sortBy === 'id') {
+                    return a.id.localeCompare(b.id);
+                }
                 return 0;   
             }); 
+        }
+
+        if(sortOrder === 'desc')
+        {
+            data = data.reverse();
         }
         
         res.json(data);
