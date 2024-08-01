@@ -10,11 +10,12 @@ async function fetchAndStoreData()
 {
     try
     {
-        const response = await axios.getAdapter(DATA_URL);
+        const response = await axios.get(DATA_URL);
         const data = response.data;
-        await fs.writeFile(DATA_FILE_PATH, JSON.stringify(data,null,2));
+        await fs.promises.writeFile(DATA_FILE_PATH, JSON.stringify(data,null,2));
         console.log("Data fetched and stored successfully");
     } catch (error) {
+        console.error("here !");
         console.error("Error fetching data", error.message);
     }
 }
@@ -23,7 +24,7 @@ async function readData()
 {
     try
     {
-        const data = await fs.readFile(DATA_FILE_PATH,'utf-8');
+        const data = await fs.promises.readFile(DATA_FILE_PATH,'utf-8');
         return JSON.parse(data);
     } catch (error) {
         console.error("Error reading data", error.message);

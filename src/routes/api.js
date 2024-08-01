@@ -6,8 +6,7 @@ const router = express.Router();
 router.get('/data', async (req, res) => {
     try{
         let data = await readData();
-        const { sortBy , filterBy , filterValue } = req.query;
-
+        const { sortBy , filterBy , filterValue } = req.body;
 
         if(filterBy && filterValue)
         {
@@ -20,7 +19,7 @@ router.get('/data', async (req, res) => {
             data = data.sort((a,b) => {
                 if(sortBy === 'version')
                     {
-                        return a.version = b.version;   
+                        return a.version - b.version;   
                     }
                 else if(sortBy === 'name')
                     {
