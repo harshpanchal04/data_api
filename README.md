@@ -10,8 +10,8 @@ This project is a Node.js API that serves dummy JSON data with filtering and sor
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/nodejs-dummy-data-api.git
-   cd nodejs-dummy-data-api
+   git clone https://github.com/harshpanchal04/data_api.git
+   cd data_api
    ```
 
 2. Install dependencies:
